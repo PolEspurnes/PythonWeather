@@ -34,10 +34,8 @@ class WeatherAPI:
         url = "https://api.openweathermap.org/data/2.5/weather?id=" + str(id) + "&units=metric&appid=" + self.key
         response = requests.get(url)
         if response:
-            print('Request is successful.')
             return response.json()
-        else:
-            print('Request returned an error.')
+
 
 
     def weather_request(self, city):

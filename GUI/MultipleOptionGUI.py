@@ -1,9 +1,8 @@
-from PyQt5.QtWidgets import QRadioButton, QPushButton, QMessageBox, QDesktopWidget, QWidget
+from PyQt5.QtWidgets import QRadioButton, QPushButton, QDesktopWidget, QWidget
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtCore import pyqtSlot
 
 from GUI.ResultsGUI import ResultsGUI
-from GUI.example import *
 from WeatherAPI import WeatherAPI
 
 
@@ -30,6 +29,8 @@ class MultipleOptionGUI(QWidget):
         self.create_buttons()
         self.center_window()
         self.paint_window()
+
+
         self.show()
 
     def paint_window(self):

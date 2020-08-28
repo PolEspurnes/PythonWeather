@@ -1,12 +1,11 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QLineEdit, QDesktopWidget, QAction, \
-    QMainWindow
-from PyQt5.QtGui import QIcon, QPalette, QColor
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5.QtWidgets import QPushButton, QMessageBox, QLineEdit, QDesktopWidget, QMainWindow
+from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtCore import pyqtSlot
 
 from GUI.ResultsGUI import ResultsGUI
 from WeatherAPI import WeatherAPI
 from GUI.MultipleOptionGUI import MultipleOptionGUI
-#from GUI.ResultsGUI import
+
 
 
 
@@ -68,7 +67,6 @@ class WeatherGUI(QMainWindow):
 
     @pyqtSlot()
     def on_click(self):
-        print('PyQt5 button click')
         city = self.search_textbox.text()
         if city in self.API.cities:
             found = self.API.cities[city]

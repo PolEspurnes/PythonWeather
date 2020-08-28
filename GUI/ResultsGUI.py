@@ -1,8 +1,9 @@
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtWidgets import QRadioButton, QPushButton, QMessageBox, QDesktopWidget, QWidget, QLabel, QMainWindow, \
-    QGridLayout, QVBoxLayout
-from PyQt5.QtGui import QPalette, QColor, QPixmap, QFont, QImage, QBrush
-from PyQt5.uic.properties import QtGui
+import urllib
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QDesktopWidget, QWidget, QLabel
+from PyQt5.QtGui import QPixmap, QFont
+
 
 
 class ResultsGUI(QWidget):
@@ -25,8 +26,7 @@ class ResultsGUI(QWidget):
 
         self.center_window()
 
-        # self.test()
-        # self.createImage()
+        self.createImage()
 
         self.generate_labels_style()
 
@@ -34,29 +34,22 @@ class ResultsGUI(QWidget):
 
         self.show()
 
-    def test(self):
-        vbox = QVBoxLayout()
-        labelImage = QLabel(self)
-        pixmap = QPixmap("image.jpg")
-        labelImage.setPixmap(pixmap)
-        vbox.addWidget(labelImage)
-        self.setLayout(vbox)
 
     def createImage(self):
         # loading image
         url = "http://openweathermap.org/img/wn/"+self.data["weather"][0]["icon"]+"@4x.png"
-        print(url)
+
+        data = urllib.request.urlopen(url).read()
+        pixmap = QPixmap()
+        pixmap.loadFromData(data)
 
         self.photo = QLabel(self)
         self.photo.setGeometry(210, 10, 251, 281)
         self.photo.setText("")
-        self.photo.setPixmap(QPixmap("10d@4x.png"))
+        self.photo.setPixmap(pixmap)
         self.photo.setScaledContents(True)
         self.photo.setObjectName("photo")
-        # self.label_image.move(120, 0)
 
-        # self.label_image.resize(400,400)
-        # self.label_image.setStyleSheet("background-image : url("+url+");border : 2px solid blue")
 
 
     def center_window(self):
@@ -64,6 +57,7 @@ class ResultsGUI(QWidget):
         centerPoint = QDesktopWidget().availableGeometry().center()
         qtRectangle.moveCenter(centerPoint)
         self.move(qtRectangle.topLeft())
+
 
     def generate_labels_style(self):
         self.title_label = QLabel(self)
@@ -94,8 +88,8 @@ class ResultsGUI(QWidget):
         self.max_temp_label.setObjectName("max_temp_label")
 
     def set_label_text(self):
-        self.title_label.setText("London -- GB")
-        self.conditions_label.setText("Weather Conditions: Rain")
-        self.temperature_label.setText("Actual temperature: 20ºC")
-        self.min_temp_label.setText("Minimum temperature: 15ºC")
-        self.max_temp_label.setText("Maximum temperature: 22ºC")
+        self.title_label.setText(self.data["name"]+" -- "+self.data["sys"]["country"])
+        self.conditions_label.setText("Weather Conditions: "+self.data["weather"][0]["main"])
+        self.temperature_label.setText("Actual temperature: "+str(self.data["main"]["temp"])+"ºC")
+        self.min_temp_label.setText("Minimum temperature: "+str(self.data["main"]["temp_min"])+"ºC")
+        self.max_temp_label.setText("Maximum temperature: "+str(self.data["main"]["temp_max"])+"ºC")
