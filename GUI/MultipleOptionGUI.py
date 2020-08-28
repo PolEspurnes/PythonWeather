@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import QRadioButton, QPushButton, QMessageBox, QDesktopWidg
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtCore import pyqtSlot
 
+from GUI.ResultsGUI import ResultsGUI
+from GUI.example import *
 from WeatherAPI import WeatherAPI
 
 
@@ -73,5 +75,5 @@ class MultipleOptionGUI(QWidget):
                 if self.results_window is not None:
                     self.results_window.close()
                     self.results_window = None
-                print(response)
+                self.results_window = ResultsGUI(response)
                 self.close()

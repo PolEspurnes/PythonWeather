@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QLi
     QMainWindow
 from PyQt5.QtGui import QIcon, QPalette, QColor
 from PyQt5.QtCore import pyqtSlot, Qt
+
+from GUI.ResultsGUI import ResultsGUI
 from WeatherAPI import WeatherAPI
 from GUI.MultipleOptionGUI import MultipleOptionGUI
 #from GUI.ResultsGUI import
@@ -82,8 +84,7 @@ class WeatherGUI(QMainWindow):
                     self.results_window.close()
                     self.results_window = None
                 data = self.API.GUI_option_selected(self.API.cities[city][0]["id"])
-                print(data)
-                # self.results_window = MultipleOptionGUI(data)
+                self.results_window = ResultsGUI(data)
         else:
             QMessageBox.question(self, 'Error', "City not found", QMessageBox.Ok, QMessageBox.Ok)
             self.search_textbox.setText("")
