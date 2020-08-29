@@ -1,6 +1,6 @@
 # PythonWeather
 
-This is a project created with Python that shows the actual weather of any chosen city in a GUI.
+This is a project created with Python that shows the actual weather of any chosen city in a **PyQt5** GUI.
 
 The [OpenWeather API](https://openweathermap.org/api) has been used to request all the data.
 
