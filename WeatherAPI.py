@@ -3,18 +3,11 @@ from CitiesDictionary import create_dictionary
 
 
 '''
-Objectives:
- - API key en un local file
  - Demanar ciutat  http://bulk.openweathermap.org/sample/city.list.json.gz
- - Retornar temps actual
-
-Advanced Objectives:
- - GUI
- - Input de ciutat en un form
- - Mostrar temps i icon https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
 '''
 
 key_filename = "APIkey"
+city_filename = "city.list.json"
 
 class WeatherAPI:
 
@@ -23,7 +16,7 @@ class WeatherAPI:
             key_file = open(key_filename, "r")
             self.key = key_file.readline()
             key_file.close()
-            self.cities = create_dictionary("city.list.json")
+            self.cities = create_dictionary(city_filename)
             self.options_window = None
             self.result_window = None
         except FileNotFoundError:
@@ -37,7 +30,16 @@ class WeatherAPI:
             return response.json()
 
 
+    '''
+    The following Functions are used without the GUI. Insert this code in main.py
+    
+    while True:
+        city = input("Introduce city: ")
+        weather.weather_request(city)
+        if input("Exit? (y) ") == "y":
+            exit()
 
+    '''
     def weather_request(self, city):
         l = len(self.cities[city])
         if l > 1:

@@ -1,6 +1,10 @@
 import json
 
-
+'''
+In this function we want to create a dictionary with the city name as the key and insert a nested dictionary with 
+id and country as value. If the city name is repeated (which is possible) the value will contain a list of nested 
+dictionaries 
+'''
 def create_dictionary(filename):
     data = readJSON(filename)
     # Iterating through the json
@@ -23,7 +27,6 @@ def create_dictionary(filename):
         else:
             dictionary[element["name"]] = []
             dictionary[element["name"]].append(city)
-
 
     return dictionary
 

@@ -72,19 +72,19 @@ class ResultsGUI(QWidget):
         self.title_label.setObjectName("title_label")
 
         self.conditions_label = QLabel(self)
-        self.conditions_label.setGeometry(90, 310, 171, 40)
+        self.conditions_label.setGeometry(90, 310, 181, 40)
         self.conditions_label.setObjectName("conditions_label")
 
         self.temperature_label = QLabel(self)
-        self.temperature_label.setGeometry(90, 340, 171, 40)
+        self.temperature_label.setGeometry(90, 340, 181, 40)
         self.temperature_label.setObjectName("temperature_label")
 
         self.min_temp_label = QLabel(self)
-        self.min_temp_label.setGeometry(90, 380, 181, 40)
+        self.min_temp_label.setGeometry(90, 380, 190, 40)
         self.min_temp_label.setObjectName("min_temp_label")
 
         self.max_temp_label = QLabel(self)
-        self.max_temp_label.setGeometry(90, 420, 171, 40)
+        self.max_temp_label.setGeometry(90, 420, 190, 40)
         self.max_temp_label.setObjectName("max_temp_label")
 
     def set_label_text(self):

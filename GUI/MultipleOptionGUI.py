@@ -71,7 +71,6 @@ class MultipleOptionGUI(QWidget):
     def on_click(self):
         for i in range(len(self.option_buttons)):
             if self.option_buttons[i].isChecked():
-                print(self.option_buttons[i].text())
                 response = self.API.GUI_option_selected(self.cities[i]["id"])
                 if self.results_window is not None:
                     self.results_window.close()
